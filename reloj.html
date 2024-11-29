@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/jquery-clockpicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 5%;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .ui-datepicker {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+        }
+
+        .ui-datepicker-header {
+            background: #007bff;
+            color: #ffffff;
+            border-bottom: 1px solid #0056b3;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ui-datepicker-prev,
+        .ui-datepicker-next {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0056b3;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        .ui-datepicker-prev:hover,
+        .ui-datepicker-next:hover {
+            background-color: #003d80;
+        }
+
+        .ui-datepicker-calendar th {
+            color: #007bff;
+        }
+
+        .ui-datepicker-calendar td a {
+            color: #333;
+            text-decoration: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            padding: 5px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .ui-datepicker-calendar td a:hover {
+            background: #007bff;
+            color: #ffffff;
+            border-color: #0056b3;
+        }
+
+        .ui-datepicker-calendar .ui-state-active {
+            background: #0056b3;
+            color: #ffffff;
+            border-color: #003d80;
+        }
+    </style>
+
+    <title>Reloj y Calendario</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- Clock Input -->
+            <div class="col-md-6 mb-4">
+                <label for="reloj">Seleccione la hora:</label>
+                <div class="input-group">
+                    <input id="reloj" value="" class="form-control" placeholder="Seleccione la hora" data-default="22:22">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar Input -->
+            <div class="col-md-6">
+                <label for="calendario">Seleccione la fecha:</label>
+                <div class="input-group">
+                    <input id="calendario" class="form-control" placeholder="Seleccione una fecha">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <!-- ClockPicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/jquery-clockpicker.min.js"></script>
+    <!-- jQuery UI Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <!-- jQuery UI Spanish localization -->
+    <script>
+        $(function () {
+            // Localization for Datepicker in Spanish
+            $.datepicker.regional['es'] = {
+                closeText: 'Cerrar',
+                prevText: '<<', // Icono anterior
+                nextText: '>>', // Icono siguiente
+                currentText: 'Hoy',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+                ],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+                    'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+                ],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+                dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                weekHeader: 'Sm',
+                dateFormat: 'dd-mm-yy',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+
+            // Initialize ClockPicker
+            $('#reloj').clockpicker({
+                autoclose: true,
+                twelvehour: true
+            });
+
+            // Initialize Datepicker
+            $('#calendario').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:2100",
+                showAnim: "fadeIn"
+            });
+        });
+    </script>
+</body>
+
+</html>
